@@ -10,7 +10,7 @@ export const LoginPage = () => {
     const { login } = useContext( AuthContext );
     
     const [ form, setForm ] = useState({
-        email: 'test1@test.com',
+        email: 'tes1@test.com',
         password: '123456',
         rememberme: false
     });
