@@ -1,26 +1,29 @@
-import React from 'react'
-import { SidebarChatItem } from './SidebarChatItem'
+import React, { useContext } from "react";
+
+import { ChatContext } from "../context/chat/ChatContext";
+import { AuthContext } from "../auth/AuthContext";
+
+import { SidebarChatItem } from "./SidebarChatItem";
 
 export const Sidebar = () => {
+  const { chatState } = useContext(ChatContext);
+  const { usuarios } = chatState;
 
-    const chats = [1,2,3,4,5,6,7,8,9,10]
+  const {auth} = useContext(AuthContext);
+  console.log('auth', auth);
 
+  const {uid} = auth;
 
-    return (
-        <div className="inbox_chat">
+  return (
+    <div className="inbox_chat">
+      {usuarios
+    .filter((usuario) => usuario.uid !== uid) 
+    .map((usuario) => (
+      <SidebarChatItem key={usuario.mombre} usuario={usuario} />
+    ))}
 
-            {
-                chats.map( (chat) => (
-                    <SidebarChatItem key={ chat } />
-                ))
-            }
-
-
-            {/* <!-- Espacio extra para scroll --> */}
-            <div className="extra_space"></div>
-
-
-        </div>
-
-    )
-}
+      {/* <!-- Espacio extra para scroll --> */}
+      <div className="extra_space"></div>
+    </div>
+  );
+};
