@@ -19,7 +19,7 @@ export const Sidebar = () => {
       {usuarios
     .filter((usuario) => usuario.uid !== uid) 
     .map((usuario) => (
-      <SidebarChatItem key={usuario.mombre} usuario={usuario} />
+      <SidebarChatItem key={usuario.uid} usuario={usuario} />
     ))}
 
       {/* <!-- Espacio extra para scroll --> */}
