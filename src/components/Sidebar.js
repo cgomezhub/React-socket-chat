@@ -10,7 +10,6 @@ export const Sidebar = () => {
   const { usuarios } = chatState;
 
   const {auth} = useContext(AuthContext);
-  console.log('auth', auth);
 
   const {uid} = auth;
 

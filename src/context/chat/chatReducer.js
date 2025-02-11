@@ -9,10 +9,6 @@ import { types } from '../../types/types';
 
 export const chatReducer = ( state, action ) => {
 
-    console.log('action', action);
-
-    console.log('stae', state);
-
 
     switch ( action.type ) {
         
@@ -32,23 +28,23 @@ export const chatReducer = ( state, action ) => {
             }
 
 
-        // case types.nuevoMensaje:
-        //     if ( state.chatActivo === action.payload.de || 
-        //          state.chatActivo === action.payload.para   
-        //     ) {
-        //         return {
-        //             ...state,
-        //             mensajes: [ ...state.mensajes, action.payload ]
-        //         }
-        //     } else {
-        //         return state;
-        //     }
+        case types.nuevoMensaje:
+            if ( state.chatActivo === action.payload.de || 
+                 state.chatActivo === action.payload.para   
+            ) {
+                return {
+                    ...state,
+                    mensajes: [ ...state.mensajes, action.payload ]
+                }
+            } else {
+                return state;
+            }
 
-        // case types.cargarMensajes:
-        //     return {
-        //         ...state,
-        //         mensajes: [ ...action.payload ]
-        //     }
+        case types.cargarMensajes:
+            return {
+                ...state,
+                mensajes: [ ...action.payload ]
+            }
     
         default:
             return state;
