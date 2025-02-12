@@ -1,26 +1,30 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { ChatContext } from "../context/chat/ChatContext";
 import { types } from "../types/types";
+import { fetchConToken } from "../helpers/fetch";
 
 export const SidebarChatItem = ({ usuario }) => {
-
-
-
   const { chatState, dispatch } = useContext(ChatContext);
 
-
-  const onClick = () => {
+  const onClick = async () => {
     dispatch({
       type: types.activarChat,
       payload: usuario.uid,
     });
-
-  }
+    const resp = await fetchConToken(`mensajes/${usuario.uid}`);
+    dispatch({
+      type: types.cargarMensajes,
+      payload: resp.mensajes,
+    });
+  };
 
   return (
-    <div className={`chat_list ${usuario.uid === chatState.chatActivo && 'active_chat'}`}
+    <div
+      className={`chat_list ${
+        usuario.uid === chatState.chatActivo && "active_chat"
+      }`}
       onClick={onClick}
-      >
+    >
       <div className="chat_people">
         <div className="chat_img">
           <img

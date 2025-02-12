@@ -27,8 +27,8 @@ export const Messages = () => {
                 {
                     mensajes.map( msg => (
                         (msg.para === auth.uid)
-                            ? <IncomingMessage key={ msg.id } mensaje={msg} />
-                            : <OutgoingMessage key={ msg.id } mensaje ={msg} />
+                            ? <IncomingMessage key={ msg._id } mensaje={msg} />
+                            : <OutgoingMessage key={ msg._id } mensaje ={msg} />
                     ))
                 }
 
