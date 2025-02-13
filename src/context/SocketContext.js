@@ -6,6 +6,7 @@ import { AuthContext } from '../auth/AuthContext';
 import { useSocket } from '../hooks/useSocket'
 
 import { types } from '../types/types';
+import { scrollToBottomAnimated } from '../helpers/scrollToBottom';
 
 export const SocketContext = createContext();
 
@@ -45,11 +46,11 @@ export const SocketProvider = ({ children }) => {
 
         socket?.on('mensaje-personal', (mensaje) => {
 
-            console.log(mensaje);
             dispatch({
                 type: types.nuevoMensaje,
                 payload: mensaje
             });
+            scrollToBottomAnimated('mensajes');
         });
       
     }, [socket, dispatch])
